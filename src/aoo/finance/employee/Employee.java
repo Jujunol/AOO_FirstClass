@@ -58,7 +58,7 @@ public abstract class Employee {
     
     @Override
     public String toString() {
-        return String.format("Name: %s\nID: %d\nDepartment: %s\nPosition: %s\n", name, id, department, position);
+        return String.format("Class: %s\nName: %s\nID: %d\nDepartment: %s\nPosition: %s\n", this.getClass().getSimpleName(), name, id, department, position);
     }
     
 }
