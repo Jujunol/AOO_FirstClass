@@ -11,15 +11,20 @@ package aoo.finance.employee;
  */
 public class HourlyEmployee extends Employee {
     
+    private int hoursWorked;
     private double wage;
-    
-    public HourlyEmployee(String name, int id, double wage) {
-        this(name, id, "", "", wage);
+
+    public HourlyEmployee(String name, int id) {
+        super(name, id);
     }
-    
-    public HourlyEmployee(String name, int id, String department, String position, double wage) {
-        super(name, id, department, position);
-        this.wage = wage;
+
+    public int getHoursWorked() {
+        return hoursWorked;
+    }
+
+    public HourlyEmployee setHoursWorked(int hoursWorked) {
+        this.hoursWorked = hoursWorked;
+        return this;
     }
 
     public HourlyEmployee setWage(double wage) {
@@ -29,6 +34,11 @@ public class HourlyEmployee extends Employee {
 
     public double getWage() {
         return wage;
+    }
+
+    @Override
+    public double getEarnings() {
+        return wage * hoursWorked;
     }
     
 }
