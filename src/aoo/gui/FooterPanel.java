@@ -10,11 +10,10 @@ import java.awt.event.ActionListener;
  */
 public class FooterPanel extends JPanel implements ActionListener {
 
-    public FooterPanel() {
+    FooterPanel() {
         JButton exitButton = new JButton("Safe Exit");
 
         exitButton.addActionListener(this);
-
         add(exitButton, BorderLayout.CENTER);
 
         setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.lightGray));

@@ -1,9 +1,11 @@
 package aoo.finance.employee;
 
+import aoo.finance.Accountable;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public abstract class Employee {
+public abstract class Employee implements Accountable {
     
     private final int id;
     private String name, department, position;
@@ -21,7 +23,8 @@ public abstract class Employee {
     }
     
     public abstract double getEarnings();
-    
+
+    @Override
     public String getName() {
         return name;
     }

@@ -33,6 +33,7 @@ public class MyWindow extends JFrame {
      * @return this
      */
     public MyWindow showWindow() {
+//        pack();
         setVisible(true);
         return this;
     }

@@ -1,6 +1,6 @@
 package aoo.finance;
 
-public class Product {
+public class Product implements Accountable {
     
     private final int id;
     private Manufacturer manufacturer;
@@ -12,6 +12,7 @@ public class Product {
         this.name = name;
     }
 
+    @Override
     public String getName() {
         return name;
     }
