@@ -81,6 +81,19 @@ public class Product implements Accountable {
     }
 
     @Override
+    public Object[] getTabData() {
+        return new Object[]{
+                id,
+                name,
+                category,
+                description,
+                partNum,
+                cost,
+                price
+        };
+    }
+
+    @Override
     public String toString() {
         return new StringBuilder()
                 .append("Name: \t").append(name)

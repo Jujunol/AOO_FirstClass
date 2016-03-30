@@ -6,5 +6,6 @@ package aoo.finance;
 public interface Accountable {
 
     public String getName();
+    public Object[] getTabData();
 
 }

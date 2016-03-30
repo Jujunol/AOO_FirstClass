@@ -38,12 +38,6 @@ public abstract class Employee implements Accountable {
         return id;
     }
     
-    // This should not be modified after initialization
-//    Employee setId(int id) {
-//        this.id = id;
-//        return this;
-//    }
-    
     public String getDepartment() {
         return department;
     }
@@ -74,10 +68,20 @@ public abstract class Employee implements Accountable {
         }
         return this;
     }
+
+    @Override
+    public Object[] getTabData() {
+        return new Object[]{
+                id,
+                name,
+                department,
+                position,
+                hireDate
+        };
+    }
     
     @Override
     public String toString() {
-        //return String.format("Class: %s\nName: %s\nID: %d\nDepartment: %s\nPosition: %s\n", this.getClass().getSimpleName(), name, id, department, position);
         return new StringBuilder()
                 .append("Class: \t").append(this.getClass().getSimpleName())
                 .append("\nName: \t").append(name)

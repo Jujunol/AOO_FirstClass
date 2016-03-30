@@ -12,7 +12,7 @@ public class MyWindow extends JFrame {
         super(title);
 
         add(new GreetingPanel(), BorderLayout.NORTH);
-        add(new ContentPanel(), BorderLayout.WEST);
+        add(new ContentPanel().setDimensions(width, height), BorderLayout.WEST);
         add(new FooterPanel(), BorderLayout.SOUTH);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

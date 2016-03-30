@@ -4,6 +4,8 @@ import aoo.finance.Product;
 import aoo.finance.employee.Employee;
 import aoo.finance.employee.HourlyEmployee;
 import aoo.finance.employee.SalaryCommissionEmployee;
+import aoo.gui.partials.EmployeeTab;
+import aoo.gui.partials.TabMenu;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,12 +15,16 @@ import java.awt.*;
  */
 public class ContentPanel extends JPanel {
 
+    private JTabbedPane menu;
+
     ContentPanel() {
-        add(createTabbedPane(), BorderLayout.CENTER);
+        add(createTabbedPane(), BorderLayout.WEST);
+
+        setBorder(BorderFactory.createLineBorder(Color.red));
     }
 
     JTabbedPane createTabbedPane() {
-        JTabbedPane menu = new JTabbedPane();
+        menu = new JTabbedPane();
 
         // TODO populate from database
         Employee mike = new HourlyEmployee("Mike", 268)
@@ -44,17 +50,26 @@ public class ContentPanel extends JPanel {
                 .setCategory("Animal")
                 .setDescription("A kitty cat");
 
-        menu.addTab("Employees", new TabMenu()
+        menu.addTab("Employees", new EmployeeTab()
                 .addItem(mike)
                 .addItem(joseph)
         );
 
-        menu.addTab("Products", new TabMenu()
+        menu.addTab("Products", new EmployeeTab()
                 .addItem(water)
                 .addItem(kitty)
         );
 
         return menu;
+    }
+
+    ContentPanel setDimensions(int width, int height) {
+        Dimension preferredSize = new Dimension(width, height);
+
+        setPreferredSize(preferredSize);
+        menu.setPreferredSize(preferredSize);
+
+        return this;
     }
 
 }
