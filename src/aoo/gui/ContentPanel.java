@@ -5,6 +5,7 @@ import aoo.finance.employee.Employee;
 import aoo.finance.employee.HourlyEmployee;
 import aoo.finance.employee.SalaryCommissionEmployee;
 import aoo.gui.partials.EmployeeTab;
+import aoo.gui.partials.ProductTab;
 import aoo.gui.partials.TabMenu;
 
 import javax.swing.*;
@@ -55,7 +56,7 @@ public class ContentPanel extends JPanel {
                 .addItem(joseph)
         );
 
-        menu.addTab("Products", new EmployeeTab()
+        menu.addTab("Products", new ProductTab()
                 .addItem(water)
                 .addItem(kitty)
         );
