@@ -14,7 +14,7 @@ public class Logger implements AutoCloseable {
 
     private static final String dirname = "logs/";
     private static final String timestampFormat = "YYmmdd-HHMMss";
-    
+
     private final BufferedWriter bufferedWriter;
     private final File file;
 
@@ -32,6 +32,7 @@ public class Logger implements AutoCloseable {
     }
 
     public void logEvent(String event) {
+        System.out.println(event);
         if(bufferedWriter == null) return;
         try {
             bufferedWriter.write(event);

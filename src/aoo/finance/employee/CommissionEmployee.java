@@ -13,6 +13,10 @@ public class CommissionEmployee extends Employee {
     
     private double commissionRate, grossSales;
 
+    public CommissionEmployee(int id) {
+        super(id);
+    }
+
     public CommissionEmployee(String name, int id) {
         super(name, id);
     }

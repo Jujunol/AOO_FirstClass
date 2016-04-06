@@ -1,6 +1,8 @@
 package aoo;
 
+import aoo.finance.employee.Employee;
 import aoo.gui.MyWindow;
+import aoo.net.Database;
 
 import java.awt.*;
 
@@ -14,5 +16,12 @@ public class Main {
                 .centerOnScreen()
                 .showWindow();
     }
+
+//    public static void main(String[] args) throws Exception {
+//        Database database = new Database();
+//        for (Employee employee : database.getEmployeeList()) {
+//            System.out.println(employee);
+//        }
+//    }
     
 }

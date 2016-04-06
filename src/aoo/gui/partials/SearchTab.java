@@ -9,11 +9,14 @@ import java.awt.*;
 public class SearchTab extends JPanel {
 
     public SearchTab() {
-        JTextField searchField = new JTextField();
-//        JTextArea displayField = new JTextArea();
+        JTextField searchField = new JTextField(20);
+        JTextArea displayField = new JTextArea(20, 40);
+
+//        searchField.setPreferredSize(new Dimension(this.getWidth(), 20));
+//        displayField.setPreferredSize(new Dimension(this.getWidth(), this.getHeight() - 30));
 
         add(searchField, BorderLayout.NORTH);
-//        add(displayField, BorderLayout.SOUTH);
+        add(displayField, BorderLayout.CENTER);
     }
 
 }

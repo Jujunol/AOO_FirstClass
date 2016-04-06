@@ -6,10 +6,24 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public abstract class Employee implements Accountable {
+
+    /*
+    create table EMP_PROJ_EMPLOYEE (
+        emp_id int AUTO_INCREMENT PRIMARY key,
+        name varchar(50) not null,
+        department varchar(25) not null,
+        position varchar(25) not null,
+        hireDate date default CURRENT_DATE
+    );
+     */
     
     private final int id;
     private String name, department, position;
     private Date hireDate;
+
+    Employee(int id) {
+        this("", id, "", "");
+    }
     
     Employee(String name, int id) {
         this(name, id, "", "");
