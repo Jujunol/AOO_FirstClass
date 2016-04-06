@@ -6,6 +6,7 @@ import aoo.finance.employee.HourlyEmployee;
 import aoo.finance.employee.SalaryCommissionEmployee;
 import aoo.gui.partials.EmployeeTab;
 import aoo.gui.partials.ProductTab;
+import aoo.gui.partials.SearchTab;
 import aoo.gui.partials.TabMenu;
 
 import javax.swing.*;
@@ -60,6 +61,8 @@ public class ContentPanel extends JPanel {
                 .addItem(water)
                 .addItem(kitty)
         );
+
+        menu.addTab("Search", new SearchTab());
 
         return menu;
     }
