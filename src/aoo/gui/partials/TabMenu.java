@@ -11,8 +11,8 @@ import java.util.ArrayList;
  */
 public abstract class TabMenu extends JPanel {
 
-    private ArrayList<Accountable> menuList;
     private JTable table;
+    private ArrayList<Accountable> menuList;
 
     public TabMenu(String[] columns) {
         menuList = new ArrayList<>();
