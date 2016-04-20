@@ -10,5 +10,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="library" name="activemq:activemq-store-jdbc:2.0" level="project" />
     <orderEntry type="library" name="mysql:mysql-connector-java:5.1.38" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-5.1.38" level="project" />
   </component>
 </module>

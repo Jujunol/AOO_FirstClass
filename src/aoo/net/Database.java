@@ -1,5 +1,6 @@
 package aoo.net;
 
+import aoo.config.DatabaseConfig;
 import aoo.finance.employee.CommissionEmployee;
 import aoo.finance.employee.Employee;
 
@@ -14,17 +15,13 @@ import java.util.Properties;
 public class Database implements AutoCloseable {
 
     private final Connection connection;
+    private final DatabaseConfig config;
 
     public Database() {
-        // TODO create config for encapsulate data
-        Properties config = new Properties();
-        config.put("user", "gc200240927");
-        config.put("password", "cm?4iJMi");
+        config = new DatabaseConfig();
 
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-
-            connection = DriverManager.getConnection("jdbc:mysql://sql.computerstudi.es:3306/gc200240927", config);
+            connection = DriverManager.getConnection(config.getConnectionString(), config.getLoginProperties());
         } catch(Exception ex) {
             throw new RuntimeException("Unable to establish connection to db", ex);
         }
@@ -35,7 +32,7 @@ public class Database implements AutoCloseable {
 
         Statement statement = connection.createStatement();
         ResultSet results = statement.executeQuery(query);
-        ResultSetMetaData metaData = results.getMetaData();
+//        ResultSetMetaData metaData = results.getMetaData();
 
         ArrayList<Employee> employees = new ArrayList<>();
 
@@ -43,7 +40,7 @@ public class Database implements AutoCloseable {
             employees.add(new CommissionEmployee(results.getInt("emp_id"))
                     .setName(results.getString("name"))
                     .setDepartment(results.getString("department"))
-                    .setHireDate(new SimpleDateFormat("yyyy-MM-dd").format(results.getDate("hireDate")))
+                    .setHireDate(results.getDate("hireDate"))
             );
             results.close();
         }
@@ -54,5 +51,6 @@ public class Database implements AutoCloseable {
     @Override
     public void close() throws Exception {
         if(connection != null) connection.close();
+        System.out.println("Connection closed");
     }
 }

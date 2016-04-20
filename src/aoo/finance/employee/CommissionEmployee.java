@@ -10,7 +10,17 @@ package aoo.finance.employee;
  * @author 200240927
  */
 public class CommissionEmployee extends Employee {
-    
+
+    /*
+     create table EMP_PROJ_COMMISSION_EMPLOYEE (
+         emp_id int not null PRIMARY KEY,
+         commission_rate decimal(5, 2),
+         gross_sales decimal(10, 2),
+
+         FOREIGN key (emp_id) REFERENCES EMP_PROJ_EMPLOYEE(emp_id)
+     );
+     */
+
     private double commissionRate, grossSales;
 
     public CommissionEmployee(int id) {

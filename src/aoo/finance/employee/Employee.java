@@ -74,12 +74,13 @@ public abstract class Employee implements Accountable {
         return hireDate;
     }
 
-    public Employee setHireDate(String hireDate) {
-        try {
-            this.hireDate = new SimpleDateFormat("yyyyMMdd").parse(hireDate);
-        } catch (Exception ex) {
-            throw new RuntimeException("Unexpected date format for HireDate: " + hireDate);
-        }
+    public Employee setHireDate(Date hireDate) {
+//        try {
+//            this.hireDate = new SimpleDateFormat("yyyyMMdd").parse(hireDate);
+//        } catch (Exception ex) {
+//            throw new RuntimeException("Unexpected date format for HireDate: " + hireDate);
+//        }
+        this.hireDate = hireDate;
         return this;
     }
 

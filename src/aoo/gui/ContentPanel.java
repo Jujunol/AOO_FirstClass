@@ -4,6 +4,7 @@ import aoo.finance.Product;
 import aoo.finance.employee.Employee;
 import aoo.finance.employee.HourlyEmployee;
 import aoo.finance.employee.SalaryCommissionEmployee;
+import aoo.finance.employee.SalaryEmployee;
 import aoo.gui.partials.EmployeeTab;
 import aoo.gui.partials.ProductTab;
 import aoo.gui.partials.SearchTab;
@@ -29,16 +30,13 @@ public class ContentPanel extends JPanel {
         menu = new JTabbedPane();
 
         // TODO populate from database
-        Employee mike = new HourlyEmployee("Mike", 268)
-                .setWage(15.20)
-                .setHoursWorked(40)
-                .setHireDate("20100524");
+        Employee mike = new SalaryEmployee("Mike", 268)
+                .setSalary(15.20 * 40 * 52);
 
         Employee joseph = new SalaryCommissionEmployee("Joseph", 268)
                 .setBaseSalary(4500)
                 .setCommissionRate(24.50)
-                .setGrossSales(5)
-                .setHireDate("20100524");
+                .setGrossSales(5);
 
         Product water = new Product(100, "Water")
                 .setCost(0.15)
