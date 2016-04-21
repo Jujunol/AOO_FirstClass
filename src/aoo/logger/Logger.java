@@ -13,7 +13,7 @@ import java.util.Date;
 public class Logger implements AutoCloseable {
 
     private static final String dirname = "logs/";
-    private static final String timestampFormat = "YYmmdd-HHMMss";
+    private static final String timestampFormat = "YYMMdd-HHmmss";
 
     private final BufferedWriter bufferedWriter;
     private final File file;
@@ -22,12 +22,48 @@ public class Logger implements AutoCloseable {
         final String filename = dirname + getCurrentTimestamp() + ".log";
         try {
             file = new File(filename);
+            if(!file.getParentFile().exists()) {
+                file.getParentFile().mkdirs();
+            }
             if (!file.exists()) {
                 file.createNewFile();
             }
             bufferedWriter = new BufferedWriter(new FileWriter(file));
+            this.generateHeader();
         } catch (IOException ex) {
             throw new RuntimeException("Unable to create log file: " + filename);
+        }
+    }
+
+    private void generateHeader() {
+        try {
+            String timestamp = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+            bufferedWriter.write("/*********************/");
+            bufferedWriter.newLine();
+            bufferedWriter.write("/* Date: " + timestamp + "  */");
+            bufferedWriter.newLine();
+            bufferedWriter.write("/*********************/");
+            bufferedWriter.newLine();
+            bufferedWriter.write("/* Starting Program  */");
+            bufferedWriter.newLine();
+            bufferedWriter.newLine();
+            System.out.println("Starting program...\n");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private void generateFooter() {
+        try {
+            bufferedWriter.write("/*********************/");
+            bufferedWriter.newLine();
+            bufferedWriter.write("/*   END OF PROGRAM  */");
+            bufferedWriter.newLine();
+            bufferedWriter.write("/*********************/");
+            bufferedWriter.newLine();
+            System.out.println("\nProgram finished");
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
     }
 
@@ -36,10 +72,17 @@ public class Logger implements AutoCloseable {
         if(bufferedWriter == null) return;
         try {
             bufferedWriter.write(event);
+            bufferedWriter.newLine();
         } catch (IOException ex) {
             System.err.println("Error occurred while logging event: " + event);
             ex.printStackTrace();
         }
+    }
+
+    public void logEvent(String event, Exception ex) {
+        logEvent(event);
+        logEvent(ex.getMessage());
+        ex.printStackTrace();
     }
 
     public File getFile() {
@@ -52,8 +95,10 @@ public class Logger implements AutoCloseable {
 
     @Override
     public void close() throws Exception {
+        this.generateFooter();
         bufferedWriter.flush();
         bufferedWriter.close();
     }
+
 
 }

@@ -21,6 +21,8 @@ public abstract class Employee implements Accountable {
     private String name, department, position;
     private Date hireDate;
 
+    private int updatedID;
+
     Employee(int id) {
         this("", id, "", "");
     }
@@ -81,6 +83,15 @@ public abstract class Employee implements Accountable {
 //            throw new RuntimeException("Unexpected date format for HireDate: " + hireDate);
 //        }
         this.hireDate = hireDate;
+        return this;
+    }
+
+    public int getUpdatedID() {
+        return updatedID;
+    }
+
+    public Employee setUpdatedID(int updatedID) {
+        this.updatedID = updatedID;
         return this;
     }
 

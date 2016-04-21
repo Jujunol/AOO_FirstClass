@@ -1,10 +1,8 @@
 package aoo.gui;
 
+import aoo.Main;
 import aoo.finance.Product;
-import aoo.finance.employee.Employee;
-import aoo.finance.employee.HourlyEmployee;
-import aoo.finance.employee.SalaryCommissionEmployee;
-import aoo.finance.employee.SalaryEmployee;
+import aoo.finance.employee.*;
 import aoo.gui.partials.EmployeeTab;
 import aoo.gui.partials.ProductTab;
 import aoo.gui.partials.SearchTab;
@@ -12,6 +10,7 @@ import aoo.gui.partials.TabMenu;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.SQLException;
 
 /**
  * Created by Juju on 3/23/2016.
@@ -22,47 +21,37 @@ public class ContentPanel extends JPanel {
 
     ContentPanel() {
         add(createTabbedPane(), BorderLayout.WEST);
-
-        setBorder(BorderFactory.createLineBorder(Color.red));
     }
 
     JTabbedPane createTabbedPane() {
         menu = new JTabbedPane();
 
-        // TODO populate from database
-        Employee mike = new SalaryEmployee("Mike", 268)
-                .setSalary(15.20 * 40 * 52);
+        EmployeeTab employeeTab = new EmployeeTab();
+        ProductTab productTab = new ProductTab();
+        try {
+            for(Employee employee : Main.getDatabase().getCommissionEmployees()) {
+                employeeTab.addItem(employee);
+            }
+            for(Product product : Main.getDatabase().getProducts()) {
+                productTab.addItem(product);
+            }
+        } catch (SQLException ex) {
+            Main.getLogger().logEvent("Unable to retrieve list of employees / products!", ex);
+        }
 
-        Employee joseph = new SalaryCommissionEmployee("Joseph", 268)
-                .setBaseSalary(4500)
-                .setCommissionRate(24.50)
-                .setGrossSales(5);
-
-        Product water = new Product(100, "Water")
-                .setCost(0.15)
-                .setPrice(2.30)
-                .setCategory("Liquid")
-                .setDescription("A water bottle");
-
-        Product kitty = new Product(101, "Kitty")
-                .setCost(10)
-                .setPrice(150)
-                .setCategory("Animal")
-                .setDescription("A kitty cat");
-
-        menu.addTab("Employees", new EmployeeTab()
-                .addItem(mike)
-                .addItem(joseph)
-        );
-
-        menu.addTab("Products", new ProductTab()
-                .addItem(water)
-                .addItem(kitty)
-        );
-
+        menu.addTab("Employees", employeeTab);
+        menu.addTab("Products", productTab);
         menu.addTab("Search", new SearchTab());
 
         return menu;
+    }
+
+    public void addTab(String text, JPanel tab) {
+        menu.add(text, tab);
+    }
+
+    public void closeTab(JPanel tab) {
+        menu.remove(tab);
     }
 
     ContentPanel setDimensions(int width, int height) {

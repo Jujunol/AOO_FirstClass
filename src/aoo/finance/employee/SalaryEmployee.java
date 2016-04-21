@@ -31,6 +31,10 @@ public class SalaryEmployee extends Employee {
         return this;
     }
 
+    public double getSalary() {
+        return salary;
+    }
+
     @Override
     public double getEarnings() {
         return salary;

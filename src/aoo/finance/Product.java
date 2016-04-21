@@ -7,6 +7,8 @@ public class Product implements Accountable {
     private String name, category, description, partNum;
     private double cost, price;
 
+    private int updatedID;
+
     public Product(int id, String name) {
         this.id = id;
         this.name = name;
@@ -77,6 +79,15 @@ public class Product implements Accountable {
 
     public Product setManufacturer(Manufacturer manufacturer) {
         this.manufacturer = manufacturer;
+        return this;
+    }
+
+    public int getUpdatedID() {
+        return updatedID;
+    }
+
+    public Product setUpdatedID(int updatedID) {
+        this.updatedID = updatedID;
         return this;
     }
 

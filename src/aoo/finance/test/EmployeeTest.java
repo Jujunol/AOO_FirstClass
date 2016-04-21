@@ -13,8 +13,7 @@ public class EmployeeTest extends TesterBase {
     public static void main(String[] args) {
         Employee mike = new HourlyEmployee("Mike", 268)
                 .setWage(15.20)
-                .setHoursWorked(40)
-                .setHireDate("20100524");
+                .setHoursWorked(40);
         
         System.out.println(mike);
         System.out.println("Earnings: " + mike.getEarnings());
